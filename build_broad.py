@@ -31,7 +31,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--hub_push_path",
-        help="Optional hugging face datasets where to push the BROAD processed dataset.",
+        help="Optional private hugging face datasets where to push the BROAD processed dataset.",
     )
 
     args = parser.parse_args()
@@ -48,4 +48,5 @@ if __name__ == "__main__":
         broad.save_to_disk(args.output_dir)
     
     if args.hub_push_path is not None:
-        broad.push_to_hub(args.hub_push_path)
+        # The repository must be private because it contains data that you are not licensed to distribute.
+        broad.push_to_hub(args.hub_push_path, private=True)
